@@ -1,0 +1,21 @@
+{
+    "name": "gebruederheitz/wp-meta-fields",
+    "description": "Dependency-less helpers for a faster Wordpress metaboxes setup.",
+    "type": "library",
+    "license": "GPL-3.0-only",
+    "autoload": {
+        "psr-4": {
+            "Gebruederheitz\\Wordpress\\MetaFields\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Andreas Maros",
+            "email": "andreas.maros@gebruederheitz.de"
+        }
+    ],
+    "require": {
+	    "php": "^7.3",
+        "gebruederheitz/simple-singleton": "^1.0"
+    }
+}
