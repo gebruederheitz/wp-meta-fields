@@ -16,7 +16,8 @@ class Input implements InputInterface
 
     public static function make(MetaForms $metaForms): InputInterface
     {
-        return new static::class($metaForms);
+        $class = static::class;
+        return new $class($metaForms);
     }
 
     public function render(): void
