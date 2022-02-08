@@ -2,7 +2,6 @@
 
 namespace Gebruederheitz\Wordpress\MetaFields\Input;
 
-use Gebruederheitz\Wordpress\MetaFields\Exception\InvalidFieldConfigurationException;
 use Gebruederheitz\Wordpress\MetaFields\MetaForms;
 
 class Input implements InputInterface
@@ -22,17 +21,15 @@ class Input implements InputInterface
 
     public function render(): void
     {
-        $this->metaForms->render(
-            static::$templatePath,
-            static::$templateName,
-            [$this]
-        );
+        $this->metaForms->render(static::$templatePath, static::$templateName, [
+            $this,
+        ]);
     }
 
     public function setMetaForms(MetaForms $metaForms): InputInterface
     {
-       $this->metaForms = $metaForms;
+        $this->metaForms = $metaForms;
 
-       return $this;
+        return $this;
     }
 }

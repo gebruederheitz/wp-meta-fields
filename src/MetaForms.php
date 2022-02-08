@@ -3,7 +3,6 @@
 namespace Gebruederheitz\Wordpress\MetaFields;
 
 use Gebruederheitz\SimpleSingleton\Singleton;
-use Gebruederheitz\Wordpress\MetaFields\Input\InputInterface;
 use Gebruederheitz\Wordpress\MetaFields\Input\MediaPicker;
 use Gebruederheitz\Wordpress\MetaFields\Input\NumberInput;
 use Gebruederheitz\Wordpress\MetaFields\Input\TextArea;
@@ -55,8 +54,12 @@ class MetaForms extends Singleton
             ->render();
     }
 
-    public static function renderNumberInputField(string $name, $value, string $label, bool $required = false)
-    {
+    public static function renderNumberInputField(
+        string $name,
+        $value,
+        string $label,
+        bool $required = false
+    ) {
         self::makeNumberInputField()
             ->setName($name)
             ->setValue($value)
@@ -65,8 +68,12 @@ class MetaForms extends Singleton
             ->render();
     }
 
-    public static function renderTextarea(string $name, $value, string $label, bool $required = false)
-    {
+    public static function renderTextarea(
+        string $name,
+        $value,
+        string $label,
+        bool $required = false
+    ) {
         self::makeTextArea()
             ->setName($name)
             ->setValue($value)
@@ -75,8 +82,12 @@ class MetaForms extends Singleton
             ->render();
     }
 
-    public static function renderTextInputField(string $name, $value, string $label, bool $required = false)
-    {
+    public static function renderTextInputField(
+        string $name,
+        $value,
+        string $label,
+        bool $required = false
+    ) {
         self::makeTextInputField()
             ->setName($name)
             ->setValue($value)

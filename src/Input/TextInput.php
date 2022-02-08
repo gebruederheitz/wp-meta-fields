@@ -126,8 +126,12 @@ class TextInput extends Input
     public function render(): void
     {
         if (empty($this->name) || empty($this->label)) {
-            error_log('Error: The render method on this field was called without a name or label set.');
-            throw new InvalidFieldConfigurationException('Every fields needs to have a name and a label.');
+            error_log(
+                'Error: The render method on this field was called without a name or label set.',
+            );
+            throw new InvalidFieldConfigurationException(
+                'Every fields needs to have a name and a label.',
+            );
         }
 
         parent::render();

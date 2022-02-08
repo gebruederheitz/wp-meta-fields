@@ -31,8 +31,7 @@ class MediaPicker extends Input
         ?int $idFieldValue = null,
         ?string $urlFieldValue = null,
         bool $showLabel = true
-    )
-    {
+    ) {
         $this->setMetaForms($metaForms);
         $this->setIdFieldName($idFieldName);
         $this->setUrlFieldName($urlFieldName);
@@ -164,9 +163,17 @@ class MediaPicker extends Input
 
     public function render(): void
     {
-        if (empty($this->idFieldName) || empty($this->urlFieldName) || empty($this->label)) {
-            error_log('Error: The render method on this field was called without a name or label set.');
-            throw new InvalidFieldConfigurationException('Every fields needs to have a name and a label.');
+        if (
+            empty($this->idFieldName) ||
+            empty($this->urlFieldName) ||
+            empty($this->label)
+        ) {
+            error_log(
+                'Error: The render method on this field was called without a name or label set.',
+            );
+            throw new InvalidFieldConfigurationException(
+                'Every fields needs to have a name and a label.',
+            );
         }
 
         parent::render();
