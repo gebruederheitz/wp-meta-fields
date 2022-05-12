@@ -70,11 +70,11 @@ class MediaPicker extends Input
     }
 
     /**
-     * @param int $idFieldValue
+     * @param ?int $idFieldValue
      *
      * @return MediaPicker
      */
-    public function setIdFieldValue(int $idFieldValue): self
+    public function setIdFieldValue(?int $idFieldValue): self
     {
         $this->idFieldValue = $idFieldValue;
 
