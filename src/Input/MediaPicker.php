@@ -11,16 +11,22 @@ class MediaPicker extends Input
 
     protected static $templateName = '';
 
+    /** @var string */
     protected $idFieldName = '';
 
+    /** @var ?int */
     protected $idFieldValue;
 
+    /** @var string */
     protected $urlFieldName = '';
 
-    protected $urlFieldValue;
+    /** @var string */
+    protected $urlFieldValue = '';
 
+    /** @var string */
     protected $label = 'Image';
 
+    /** @var bool */
     protected $showLabel = true;
 
     public function __construct(
@@ -29,7 +35,7 @@ class MediaPicker extends Input
         string $urlFieldName = '',
         string $label = 'Image',
         ?int $idFieldValue = null,
-        ?string $urlFieldValue = null,
+        ?string $urlFieldValue = '',
         bool $showLabel = true
     ) {
         $this->setMetaForms($metaForms);
@@ -102,9 +108,9 @@ class MediaPicker extends Input
     }
 
     /**
-     * @return ?string
+     * @return string
      */
-    public function getUrlFieldValue(): ?string
+    public function getUrlFieldValue(): string
     {
         return $this->urlFieldValue;
     }
