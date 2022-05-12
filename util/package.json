@@ -1,6 +1,6 @@
 {
   "name": "@gebruederheitz/wp-meta-fields-util",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Utilities for the gebruederheitz/wp-easy-cpt PHP composer package",
   "main": "",
   "engines": {
