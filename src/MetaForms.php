@@ -18,6 +18,8 @@ class MetaForms extends Singleton
 
     protected $textDomain = 'ghwp';
 
+    protected $hasRenderedCheckboxStyles = false;
+
     public static function makeMediaPicker(string $name = ''): MediaPicker
     {
         return new MediaPicker(self::getInstance(), $name);
@@ -40,7 +42,9 @@ class MetaForms extends Singleton
 
     public static function makeCheckboxField(string $name = ''): CheckboxInput
     {
-        return new CheckboxInput(self::getInstance(), $name);
+        $instance = self::getInstance();
+        $instance->maybeRenderCheckboxStyles();
+        return new CheckboxInput($instance, $name);
     }
 
     public static function makeSelectField(string $name = ''): SelectInput
@@ -142,17 +146,14 @@ class MetaForms extends Singleton
     {
         return self::getInstance()->setTextDomain($textDomain);
     }
-
     public static function updateOverridePath(string $overridePath): self
     {
         return self::getInstance()->setOverridePath($overridePath);
     }
-
     public function getTextDomain(): string
     {
         return $this->textDomain;
     }
-
     public function render(string $path, string $name = '', array $args = null)
     {
         $templatePathUsed = static::PAGE_TEMPLATE_PATH;
@@ -182,5 +183,20 @@ class MetaForms extends Singleton
         $this->textDomain = $textDomain;
 
         return $this;
+    }
+
+    protected function maybeRenderCheckboxStyles(): void
+    {
+        if (!$this->hasRenderedCheckboxStyles) {
+            $this->hasRenderedCheckboxStyles = true;
+
+            $templatePathUsed = static::PAGE_TEMPLATE_PATH;
+            if ($overriddenTemplate = locate_template($this->overridePath)) {
+                $templatePathUsed = $overriddenTemplate;
+            }
+
+            $template = $templatePathUsed . 'style-checkbox.php';
+            load_template($template, false);
+        }
     }
 }
