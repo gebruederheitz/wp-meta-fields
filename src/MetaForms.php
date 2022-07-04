@@ -3,6 +3,7 @@
 namespace Gebruederheitz\Wordpress\MetaFields;
 
 use Gebruederheitz\SimpleSingleton\Singleton;
+use Gebruederheitz\Wordpress\MetaFields\Input\CheckboxInput;
 use Gebruederheitz\Wordpress\MetaFields\Input\MediaPicker;
 use Gebruederheitz\Wordpress\MetaFields\Input\NumberInput;
 use Gebruederheitz\Wordpress\MetaFields\Input\TextArea;
@@ -34,6 +35,11 @@ class MetaForms extends Singleton
     public static function makeTextInputField(string $name = ''): TextInput
     {
         return new TextInput(self::getInstance(), $name);
+    }
+
+    public static function makeCheckboxField(string $name = ''): CheckboxInput
+    {
+        return new CheckboxInput(self::getInstance(), $name);
     }
 
     public static function renderMediaPicker(
@@ -91,6 +97,20 @@ class MetaForms extends Singleton
         self::makeTextInputField()
             ->setName($name)
             ->setValue($value)
+            ->setLabel($label)
+            ->setRequired($required)
+            ->render();
+    }
+
+    public static function renderCheckboxField(
+        string $name,
+        bool $checked,
+        string $label,
+        bool $required = false
+    ) {
+        self::makeCheckboxField()
+            ->setName($name)
+            ->setChecked($checked)
             ->setLabel($label)
             ->setRequired($required)
             ->render();
