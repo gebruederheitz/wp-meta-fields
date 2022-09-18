@@ -58,7 +58,7 @@ class TextInput extends Input
      */
     public function getType(): string
     {
-        return self::type;
+        return static::type;
     }
 
     public function getPlaceholder(): string
