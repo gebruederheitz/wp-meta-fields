@@ -17,6 +17,15 @@
                 id="<?= $input->getName() ?>-input"
                 class="components-text-control__input"
                 value="<?= esc_attr($input->getValue()) ?>"<?php if ($input->isRequired()) echo ' required'; ?>
+                <?php if (method_exists($input, 'getMinValue') && !empty($input->getMinValue())): ?>
+                min="<?= $input->getMinValue() ?>"
+                <?php endif; ?>
+                <?php if (method_exists($input, 'getMaxValue') && !empty($input->getMaxValue())): ?>
+                max="<?= $input->getMaxValue() ?>"
+                <?php endif; ?>
+                <?php if (!empty($input->getPlaceholder())): ?>
+                placeholder="<?= $input->getPlaceholder() ?>"
+                <?php endif; ?>
             >
         </div>
     </div>

@@ -17,6 +17,8 @@ class TextInput extends Input
 
     protected $value = '';
 
+    protected $placeholder = '';
+
     protected $required = false;
 
     protected const type = 'text';
@@ -54,6 +56,19 @@ class TextInput extends Input
     /**
      * @return string
      */
+    public function getType(): string
+    {
+        return self::type;
+    }
+
+    public function getPlaceholder(): string
+    {
+        return $this->placeholder;
+    }
+
+    /**
+     * @return string
+     */
     public function getValue(): string
     {
         return $this->value;
@@ -65,14 +80,6 @@ class TextInput extends Input
     public function isRequired(): bool
     {
         return $this->required;
-    }
-
-    /**
-     * @return string
-     */
-    public function getType(): string
-    {
-        return self::type;
     }
 
     /**
@@ -99,14 +106,9 @@ class TextInput extends Input
         return $this;
     }
 
-    /**
-     * @param string $value
-     *
-     * @return TextInput
-     */
-    public function setValue(string $value): TextInput
+    public function setPlaceholder(string $placeholder): TextInput
     {
-        $this->value = $value;
+        $this->placeholder = $placeholder;
 
         return $this;
     }
@@ -119,6 +121,18 @@ class TextInput extends Input
     public function setRequired(bool $required): TextInput
     {
         $this->required = $required;
+
+        return $this;
+    }
+
+    /**
+     * @param string $value
+     *
+     * @return TextInput
+     */
+    public function setValue(string $value): TextInput
+    {
+        $this->value = $value;
 
         return $this;
     }
