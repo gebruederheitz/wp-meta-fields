@@ -6,6 +6,13 @@ lint:
 		&& npm run lint
 	@composer lint
 
+# Build JS sources (for media picker)
+build:
+	@cd js/ \
+		&& . $$NVM_DIR/nvm.sh && nvm use \
+		&& npm i \
+		&& npm run build
+
 # Make prettier process and fix all files in src/
 prettier:
 	@cd util/ \

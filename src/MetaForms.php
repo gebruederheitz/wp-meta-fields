@@ -20,9 +20,9 @@ class MetaForms extends Singleton
 
     protected $hasRenderedCheckboxStyles = false;
 
-    public static function makeMediaPicker(string $name = ''): MediaPicker
+    public static function makeMediaPicker(string $inputId = null): MediaPicker
     {
-        return new MediaPicker(self::getInstance(), $name);
+        return new MediaPicker(self::getInstance(), $inputId);
     }
 
     public static function makeNumberInputField(string $name = ''): NumberInput
@@ -57,10 +57,11 @@ class MetaForms extends Singleton
         ?int $idFieldValue,
         string $urlFieldName,
         ?string $urlFieldValue,
+        string $inputId = null,
         string $label = 'Image',
         bool $showLabel = true
     ) {
-        self::makeMediaPicker()
+        self::makeMediaPicker($inputId)
             ->setIdFieldName($idFieldName)
             ->setUrlFieldName($urlFieldName)
             ->setLabel($label)
@@ -146,14 +147,23 @@ class MetaForms extends Singleton
     {
         return self::getInstance()->setTextDomain($textDomain);
     }
+
     public static function updateOverridePath(string $overridePath): self
     {
         return self::getInstance()->setOverridePath($overridePath);
     }
+
+    protected function __construct()
+    {
+        parent::__construct();
+        MediaUploadScripts::registerScripts();
+    }
+
     public function getTextDomain(): string
     {
         return $this->textDomain;
     }
+
     public function render(string $path, string $name = '', array $args = null)
     {
         $templatePathUsed = static::PAGE_TEMPLATE_PATH;

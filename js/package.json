@@ -1,0 +1,36 @@
+{
+  "name": "@gebruederheitz/wp-meta-fields-js",
+  "version": "1.2.1",
+  "description": "JS build setup for the gebruederheitz/wp-easy-cpt PHP composer package",
+  "main": "",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "rollup -c rollup.config.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gebruederheitz/wp-meta-fields.git"
+  },
+  "author": "/gebrüderheitz <kontakt@gebruederheitz.de>",
+  "license": "GPL-3.0-only",
+  "bugs": {
+    "url": "https://github.com/gebruederheitz/wp-meta-fields/issues"
+  },
+  "homepage": "https://github.com/gebruederheitz/wp-meta-fields#readme",
+  "dependencies": {
+    "@babel/runtime": "^7.20.13",
+    "core-js": "^3.27.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.12",
+    "@babel/plugin-transform-runtime": "^7.19.6",
+    "@babel/preset-env": "^7.20.2",
+    "@rollup/plugin-babel": "^6.0.3",
+    "@rollup/plugin-commonjs": "^24.0.1",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-terser": "^0.4.0",
+    "rollup": "^3.15.0"
+  }
+}

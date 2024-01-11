@@ -9,3 +9,9 @@ npm:
   publish: false
 hooks:
   after:release: "echo Successfully released ${name} v${version} to ${repo.repository}."
+plugins:
+  "@release-it/bumper":
+    in: util/package.json
+    out:
+      file: src/Util.php
+      type: text/php

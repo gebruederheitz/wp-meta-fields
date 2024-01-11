@@ -5,6 +5,8 @@
      * Make sure you have enqueued the wp media scripts.
      */
 
+    use function esc_html;
+
     /** @var \Gebruederheitz\Wordpress\MetaFields\Input\MediaPicker $input */
     [$input] = $args;
 ?>
@@ -18,14 +20,38 @@
         <?php endif; ?>
     </th>
     <td>
-        <input id="upload_image_button" type="button" class="button" value="<?= __( 'Select image' ) ?>" />
-        <input type="hidden" name="<?= $input->getIdFieldName() ?>" id="upload_image_id_input" value="<?= $input->getIdFieldValue() ?? null ?>">
-        <input type="hidden" name="<?= $input->getUrlFieldName() ?>" id="upload_image_url_input" value="<?= $input->getUrlFieldValue() ?? null ?>">
+        <input
+            data-gh-image-upload="<?= $input->getInputId() ?>"
+            data-gh-image-upload-field="select"
+            type="button"
+            class="button"
+            value="<?= __( 'Select image' ) ?>"
+        />
+        <input
+            type="hidden"
+            name="<?= $input->getIdFieldName() ?>"
+            data-gh-image-upload-field="id"
+            data-gh-image-upload="<?= $input->getInputId() ?>"
+            value="<?= $input->getIdFieldValue() ?? null ?>"
+        >
+        <input
+            type="hidden"
+            name="<?= $input->getUrlFieldName() ?>"
+            data-gh-image-upload-field="url"
+            data-gh-image-upload="<?= $input->getInputId() ?>"
+            value="<?= $input->getUrlFieldValue() ?? null ?>"
+        >
     </td>
     <?php if (!empty($input->getUrlFieldValue())): ?>
         <td>
             <div class='image-preview-wrapper'>
-                <img id='image-preview' src='<?= $input->getUrlFieldValue() ?>' height='100' alt="Image upload preview">
+                <img
+                    data-gh-image-upload-field="preview"
+                    data-gh-image-upload="<?= $input->getInputId() ?>"
+                    src='<?= $input->getUrlFieldValue() ?>'
+                    height='100'
+                    alt="Image upload preview"
+                >
             </div>
         </td>
     <?php endif; ?>
