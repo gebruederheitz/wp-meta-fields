@@ -2,7 +2,7 @@
 
 namespace Gebruederheitz\Wordpress\MetaFields\Input;
 
-class NumberInput extends TextInput
+class NumberInput extends MinMaxTextInput
 {
     protected const type = 'number';
 }
