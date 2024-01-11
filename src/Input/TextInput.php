@@ -146,9 +146,11 @@ class TextInput extends Input
         return $this->readonly;
     }
 
-    public function setReadonly(bool $readonly): void
+    public function setReadonly(bool $readonly): TextInput
     {
         $this->readonly = $readonly;
+
+        return $this;
     }
 
     public function render(): void
