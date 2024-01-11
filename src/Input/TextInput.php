@@ -19,6 +19,8 @@ class TextInput extends Input
 
     protected $required = false;
 
+    protected $readonly = false;
+
     protected const type = 'text';
 
     public function __construct(
@@ -26,13 +28,15 @@ class TextInput extends Input
         string $name = '',
         string $label = '',
         $value = '',
-        bool $required = false
+        bool $required = false,
+        bool $readonly = false
     ) {
         $this->setMetaForms($metaForms);
         $this->setName($name);
         $this->setLabel($label);
         $this->setValue($value);
         $this->setRequired($required);
+        $this->setReadonly($readonly);
     }
 
     /**
@@ -121,6 +125,16 @@ class TextInput extends Input
         $this->required = $required;
 
         return $this;
+    }
+
+    public function isReadonly(): bool
+    {
+        return $this->readonly;
+    }
+
+    public function setReadonly(bool $readonly): void
+    {
+        $this->readonly = $readonly;
     }
 
     public function render(): void

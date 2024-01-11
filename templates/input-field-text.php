@@ -16,7 +16,9 @@
                 name="<?= $input->getName() ?>"
                 id="<?= $input->getName() ?>-input"
                 class="components-text-control__input"
-                value="<?= esc_attr($input->getValue()) ?>"<?php if ($input->isRequired()) echo ' required'; ?>
+                value="<?= esc_attr($input->getValue()) ?>"<?php if ($input->isRequired()) echo ' required'; ?><?php
+                    if ($input->isReadonly()) { echo " readonly"; }
+                ?>
             >
         </div>
     </div>
