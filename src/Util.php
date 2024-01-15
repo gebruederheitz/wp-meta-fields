@@ -6,5 +6,5 @@ namespace Gebruederheitz\Wordpress\MetaFields;
 
 class Util
 {
-    public const VERSION = '1.6.0-beta.2';
+    public const VERSION = '1.6.0-beta.3';
 }
