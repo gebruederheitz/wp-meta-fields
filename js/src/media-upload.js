@@ -31,7 +31,7 @@ class MediaPicker {
 
         // Sets up the media library frame
         this.frame = media({
-            title: __('Select a category header image', 'ghwp'),
+            title: __('Select a file', 'ghwp'),
             button: { text: 'Use this file' },
             multiple: false,
         });
