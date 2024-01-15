@@ -3,6 +3,7 @@
 namespace Gebruederheitz\Wordpress\MetaFields\Input;
 
 use Gebruederheitz\Wordpress\MetaFields\Exception\InvalidFieldConfigurationException;
+use Gebruederheitz\Wordpress\MetaFields\MediaUploadScripts;
 use Gebruederheitz\Wordpress\MetaFields\MetaForms;
 
 class MediaPicker extends Input
@@ -10,6 +11,9 @@ class MediaPicker extends Input
     protected static $templatePath = 'media-picker';
 
     protected static $templateName = '';
+
+    /** @var string */
+    protected $inputId = '';
 
     /** @var string */
     protected $idFieldName = '';
@@ -37,6 +41,7 @@ class MediaPicker extends Input
 
     public function __construct(
         MetaForms $metaForms,
+        string $inputId = null,
         string $idFieldName = '',
         string $urlFieldName = '',
         string $label = 'Image',
@@ -44,6 +49,11 @@ class MediaPicker extends Input
         ?string $urlFieldValue = '',
         bool $showLabel = true
     ) {
+        MediaUploadScripts::enqueueScripts();
+        if ($inputId === null) {
+            $inputId = random_bytes(16);
+        }
+        $this->setInputId($inputId);
         $this->setMetaForms($metaForms);
         $this->setIdFieldName($idFieldName);
         $this->setUrlFieldName($urlFieldName);
@@ -51,6 +61,18 @@ class MediaPicker extends Input
         $this->setIdFieldValue($idFieldValue);
         $this->setUrlFieldValue($urlFieldValue);
         $this->setShowLabel($showLabel);
+    }
+
+    public function getInputId(): string
+    {
+        return $this->inputId;
+    }
+
+    public function setInputId(string $inputId): self
+    {
+        $this->inputId = $inputId;
+
+        return $this;
     }
 
     /**
