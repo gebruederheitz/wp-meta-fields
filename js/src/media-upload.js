@@ -18,8 +18,6 @@ class MediaPicker {
 
         this.onClick = this.onClick.bind(this);
         this.onMediaSelect = this.onMediaSelect.bind(this);
-
-        this.listen();
     }
 
     listen() {
@@ -66,6 +64,6 @@ class MediaPicker {
 domReady(() => {
     const mediaUploadButtons = document.querySelectorAll(buttonSelector);
     mediaUploadButtons.forEach((button) => {
-        new MediaPicker(button);
+        new MediaPicker(button).listen();
     });
 });
