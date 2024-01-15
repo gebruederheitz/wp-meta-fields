@@ -23,8 +23,11 @@ class MediaUploadScripts extends Singleton
 
     public static function enqueueScripts(): void
     {
-        if (!self::getInstance()->hasBeenEnqueued) {
-            self::getInstance()->enqueue();
+        /** @var MediaUploadScripts $instance */
+        $instance = self::getInstance();
+
+        if (!$instance->hasBeenEnqueued) {
+            $instance->enqueue();
         }
     }
 
