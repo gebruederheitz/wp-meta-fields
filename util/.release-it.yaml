@@ -8,10 +8,15 @@ github:
 npm:
   publish: false
 hooks:
+  before:bump:
+    - cd ../js && npm i && npm run build
+  after:bump:
+    - cd ../js && npm i
   after:release: "echo Successfully released ${name} v${version} to ${repo.repository}."
 plugins:
   "@release-it/bumper":
-    in: util/package.json
+    in: package.json
     out:
-      file: src/Util.php
-      type: text/php
+      - ../src/Util.php
+      - ../js/package.json
+
