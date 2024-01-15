@@ -33,6 +33,12 @@ class MediaPicker extends Input
     /** @var bool */
     protected $showLabel = true;
 
+    /** @var string */
+    protected $buttonText = 'Select image';
+
+    /** @var bool $showPreview */
+    protected $showPreview = true;
+
     public function __construct(
         MetaForms $metaForms,
         string $inputId = null,
@@ -185,6 +191,30 @@ class MediaPicker extends Input
     public function setShowLabel(bool $showLabel): self
     {
         $this->showLabel = $showLabel;
+
+        return $this;
+    }
+
+    public function getButtonText(): string
+    {
+        return $this->buttonText;
+    }
+
+    public function setButtonText(string $buttonText): self
+    {
+        $this->buttonText = $buttonText;
+
+       return $this;
+    }
+
+    public function isShowPreview(): bool
+    {
+        return $this->showPreview;
+    }
+
+    public function setShowPreview(bool $showPreview): self
+    {
+        $this->showPreview = $showPreview;
 
         return $this;
     }

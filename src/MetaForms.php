@@ -4,11 +4,14 @@ namespace Gebruederheitz\Wordpress\MetaFields;
 
 use Gebruederheitz\SimpleSingleton\Singleton;
 use Gebruederheitz\Wordpress\MetaFields\Input\CheckboxInput;
+use Gebruederheitz\Wordpress\MetaFields\Input\DateInput;
+use Gebruederheitz\Wordpress\MetaFields\Input\DateTimeInput;
 use Gebruederheitz\Wordpress\MetaFields\Input\MediaPicker;
 use Gebruederheitz\Wordpress\MetaFields\Input\NumberInput;
 use Gebruederheitz\Wordpress\MetaFields\Input\SelectInput;
 use Gebruederheitz\Wordpress\MetaFields\Input\TextArea;
 use Gebruederheitz\Wordpress\MetaFields\Input\TextInput;
+use Gebruederheitz\Wordpress\MetaFields\Input\TimeInput;
 
 class MetaForms extends Singleton
 {
@@ -20,6 +23,24 @@ class MetaForms extends Singleton
 
     protected $hasRenderedCheckboxStyles = false;
 
+    public static function makeCheckboxField(string $name = ''): CheckboxInput
+    {
+        $instance = self::getInstance();
+        $instance->maybeRenderCheckboxStyles();
+        return new CheckboxInput($instance, $name);
+    }
+
+    public static function makeDateInputField(string $name = ''): DateInput
+    {
+        return new DateInput(self::getInstance(), $name);
+    }
+
+    public static function makeDateTimeInputField(
+        string $name = ''
+    ): DateTimeInput {
+        return new DateTimeInput(self::getInstance(), $name);
+    }
+
     public static function makeMediaPicker(string $inputId = null): MediaPicker
     {
         return new MediaPicker(self::getInstance(), $inputId);
@@ -28,6 +49,11 @@ class MetaForms extends Singleton
     public static function makeNumberInputField(string $name = ''): NumberInput
     {
         return new NumberInput(self::getInstance(), $name);
+    }
+
+    public static function makeSelectField(string $name = ''): SelectInput
+    {
+        return new SelectInput(self::getInstance(), $name);
     }
 
     public static function makeTextArea(string $name = ''): TextArea
@@ -40,16 +66,9 @@ class MetaForms extends Singleton
         return new TextInput(self::getInstance(), $name);
     }
 
-    public static function makeCheckboxField(string $name = ''): CheckboxInput
+    public static function makeTimeInputField(string $name = ''): TimeInput
     {
-        $instance = self::getInstance();
-        $instance->maybeRenderCheckboxStyles();
-        return new CheckboxInput($instance, $name);
-    }
-
-    public static function makeSelectField(string $name = ''): SelectInput
-    {
-        return new SelectInput(self::getInstance(), $name);
+        return new TimeInput(self::getInstance(), $name);
     }
 
     public static function renderMediaPicker(
@@ -113,6 +132,48 @@ class MetaForms extends Singleton
             ->render();
     }
 
+    public static function renderDateInputField(
+        string $name,
+        $value,
+        string $label,
+        bool $required = false
+    ) {
+        self::makeDateInputField()
+            ->setName($name)
+            ->setValue($value)
+            ->setLabel($label)
+            ->setRequired($required)
+            ->render();
+    }
+
+    public static function renderDateTimeInputField(
+        string $name,
+        $value,
+        string $label,
+        bool $required = false
+    ) {
+        self::makeDateTimeInputField()
+            ->setName($name)
+            ->setValue($value)
+            ->setLabel($label)
+            ->setRequired($required)
+            ->render();
+    }
+
+    public static function renderTimeInputField(
+        string $name,
+        $value,
+        string $label,
+        bool $required = false
+    ) {
+        self::makeTimeInputField()
+            ->setName($name)
+            ->setValue($value)
+            ->setLabel($label)
+            ->setRequired($required)
+            ->render();
+    }
+
     public static function renderCheckboxField(
         string $name,
         bool $checked,
@@ -166,17 +227,17 @@ class MetaForms extends Singleton
 
     public function render(string $path, string $name = '', array $args = null)
     {
-        $templatePathUsed = static::PAGE_TEMPLATE_PATH;
-
-        if ($overriddenTemplate = locate_template($this->overridePath)) {
-            $templatePathUsed = $overriddenTemplate;
-        }
-
-        $template = $templatePathUsed . $path;
+        $templatePath = $path;
         if (!empty($name)) {
-            $template .= '-' . $name;
+            $templatePath .= '-' . $name;
         }
-        $template .= '.php';
+        $templatePath .= '.php';
+
+        if ($overriddenTemplate = locate_template($this->overridePath . $templatePath)) {
+            $template = $overriddenTemplate;
+        } else {
+            $template = static::PAGE_TEMPLATE_PATH . $templatePath;
+        }
 
         load_template($template, false, $args);
     }

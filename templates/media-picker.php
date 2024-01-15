@@ -25,7 +25,7 @@
             data-gh-image-upload-field="select"
             type="button"
             class="button"
-            value="<?= __( 'Select image' ) ?>"
+            value="<?= __($input->getButtonText()) ?>"
         />
         <input
             type="hidden"
@@ -42,7 +42,7 @@
             value="<?= $input->getUrlFieldValue() ?? null ?>"
         >
     </td>
-    <?php if (!empty($input->getUrlFieldValue())): ?>
+    <?php if (!empty($input->getUrlFieldValue() && $input->isShowPreview())): ?>
         <td>
             <div class='image-preview-wrapper'>
                 <img
