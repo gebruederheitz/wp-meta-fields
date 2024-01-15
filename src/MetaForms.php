@@ -226,7 +226,11 @@ class MetaForms extends Singleton
         }
         $templatePath .= '.php';
 
-        if ($overriddenTemplate = locate_template($this->overridePath . $templatePath)) {
+        if (
+            $overriddenTemplate = locate_template(
+                $this->overridePath . $templatePath,
+            )
+        ) {
             $template = $overriddenTemplate;
         } else {
             $template = static::PAGE_TEMPLATE_PATH . $templatePath;

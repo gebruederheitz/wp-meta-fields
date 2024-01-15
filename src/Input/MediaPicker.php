@@ -182,7 +182,7 @@ class MediaPicker extends Input
     {
         $this->buttonText = $buttonText;
 
-       return $this;
+        return $this;
     }
 
     public function isShowPreview(): bool
