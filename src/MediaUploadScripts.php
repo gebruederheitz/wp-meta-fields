@@ -16,7 +16,7 @@ class MediaUploadScripts extends Singleton
     {
         wp_register_script(
             self::SCRIPT_HANDLE,
-            __DIR__ . '/../js/dist/media-upload.js',
+            '',
             [],
         );
     }
@@ -35,5 +35,7 @@ class MediaUploadScripts extends Singleton
     {
         $this->hasBeenEnqueued = true;
         wp_enqueue_script(self::SCRIPT_HANDLE);
+        $scriptContent = file_get_contents(__DIR__ . '/../js/dist/media-upload.js');
+        wp_add_inline_script(self::SCRIPT_HANDLE, $scriptContent);
     }
 }
