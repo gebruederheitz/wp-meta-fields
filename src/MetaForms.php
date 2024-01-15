@@ -207,27 +207,30 @@ class MetaForms extends Singleton
     {
         return self::getInstance()->setTextDomain($textDomain);
     }
+
     public static function updateOverridePath(string $overridePath): self
     {
         return self::getInstance()->setOverridePath($overridePath);
     }
+
     public function getTextDomain(): string
     {
         return $this->textDomain;
     }
+
     public function render(string $path, string $name = '', array $args = null)
     {
-        $templatePathUsed = static::PAGE_TEMPLATE_PATH;
-
-        if ($overriddenTemplate = locate_template($this->overridePath)) {
-            $templatePathUsed = $overriddenTemplate;
-        }
-
-        $template = $templatePathUsed . $path;
+        $templatePath = $path;
         if (!empty($name)) {
-            $template .= '-' . $name;
+            $templatePath .= '-' . $name;
         }
-        $template .= '.php';
+        $templatePath .= '.php';
+
+        if ($overriddenTemplate = locate_template($this->overridePath . $templatePath)) {
+            $template = $overriddenTemplate;
+        } else {
+            $template = static::PAGE_TEMPLATE_PATH . $templatePath;
+        }
 
         load_template($template, false, $args);
     }
