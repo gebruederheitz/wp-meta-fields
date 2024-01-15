@@ -5,8 +5,6 @@
      * Make sure you have enqueued the wp media scripts.
      */
 
-    use function esc_html;
-
     /** @var \Gebruederheitz\Wordpress\MetaFields\Input\MediaPicker $input */
     [$input] = $args;
 ?>
