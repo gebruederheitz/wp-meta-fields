@@ -12,6 +12,7 @@ hooks:
     - cd ../js && npm i && npm run build
   after:bump:
     - cd ../js && npm i
+    - git add ../js/package.json ../js/package-lock.json ../src/Util.php
   after:release: "echo Successfully released ${name} v${version} to ${repo.repository}."
 plugins:
   "@release-it/bumper":

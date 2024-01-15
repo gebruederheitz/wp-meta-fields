@@ -1,6 +1,6 @@
 {
   "name": "@gebruederheitz/wp-meta-fields-js",
-  "version": "1.5.0",
+  "version": "1.6.0-beta.1",
   "description": "JS build setup for the gebruederheitz/wp-easy-cpt PHP composer package",
   "main": "",
   "engines": {
