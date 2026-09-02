@@ -6,6 +6,10 @@ lint:
 		&& npm run lint
 	@composer lint
 
+# Run the PHPUnit test suite
+test:
+	@composer test
+
 # Build JS sources (for media picker)
 build:
 	@cd js/ \

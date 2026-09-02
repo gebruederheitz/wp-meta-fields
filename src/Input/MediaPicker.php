@@ -41,7 +41,7 @@ class MediaPicker extends Input
 
     public function __construct(
         MetaForms $metaForms,
-        string $inputId = null,
+        ?string $inputId = null,
         string $idFieldName = '',
         string $urlFieldName = '',
         string $label = 'Image',

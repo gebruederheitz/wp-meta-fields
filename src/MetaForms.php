@@ -41,7 +41,7 @@ class MetaForms extends Singleton
         return new DateTimeInput(self::getInstance(), $name);
     }
 
-    public static function makeMediaPicker(string $inputId = null): MediaPicker
+    public static function makeMediaPicker(?string $inputId = null): MediaPicker
     {
         return new MediaPicker(self::getInstance(), $inputId);
     }
@@ -76,7 +76,7 @@ class MetaForms extends Singleton
         ?int $idFieldValue,
         string $urlFieldName,
         ?string $urlFieldValue,
-        string $inputId = null,
+        ?string $inputId = null,
         string $label = 'Image',
         bool $showLabel = true
     ) {
@@ -225,7 +225,7 @@ class MetaForms extends Singleton
         return $this->textDomain;
     }
 
-    public function render(string $path, string $name = '', array $args = null)
+    public function render(string $path, string $name = '', ?array $args = null)
     {
         $templatePath = $path;
         if (!empty($name)) {
