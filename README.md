@@ -162,8 +162,7 @@ MetaForms::getInstance()->setOverridePath('partials/vendor/gebruederheitz/meta-f
 
 ### Dependencies
 
-- PHP >= 8.0
+- [asdf](https://asdf-vm.com/) with the PHP and Node.js versions from `.tool-versions`
 - [Composer 2.x](https://getcomposer.org)
-- [NVM](https://github.com/nvm-sh/nvm) and nodeJS LTS (v16.x)
 - Nice to have: GNU Make (or drop-in alternative)
 
